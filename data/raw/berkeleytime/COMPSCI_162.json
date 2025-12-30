@@ -1,0 +1,82 @@
+{
+  "data": {
+    "course": {
+      "courseId": "104276",
+      "subject": "COMPSCI",
+      "number": "162",
+      "gradeDistribution": {
+        "average": 3.471847739888977,
+        "distribution": [
+          {
+            "letter": "A",
+            "count": 1403
+          },
+          {
+            "letter": "A-",
+            "count": 854
+          },
+          {
+            "letter": "A+",
+            "count": 122
+          },
+          {
+            "letter": "B",
+            "count": 361
+          },
+          {
+            "letter": "B-",
+            "count": 211
+          },
+          {
+            "letter": "B+",
+            "count": 480
+          },
+          {
+            "letter": "C",
+            "count": 91
+          },
+          {
+            "letter": "C-",
+            "count": 72
+          },
+          {
+            "letter": "C+",
+            "count": 125
+          },
+          {
+            "letter": "D",
+            "count": 18
+          },
+          {
+            "letter": "D-",
+            "count": 6
+          },
+          {
+            "letter": "D+",
+            "count": 18
+          },
+          {
+            "letter": "F",
+            "count": 22
+          },
+          {
+            "letter": "NP",
+            "count": 47
+          },
+          {
+            "letter": "P",
+            "count": 894
+          },
+          {
+            "letter": "S",
+            "count": 13
+          },
+          {
+            "letter": "U",
+            "count": 2
+          }
+        ]
+      }
+    }
+  }
+}

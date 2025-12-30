@@ -1,0 +1,121 @@
+Loading course data...
+Loaded 30 courses
+
+================================================================================
+BERKELEYTIME GRADE DATA - EXPLORATION SUMMARY
+================================================================================
+
+Total courses fetched: 30
+
+Courses by subject:
+  COMPSCI: 18 courses
+  DATA: 12 courses
+
+Data Completeness Check:
+  Courses with average GPA: 29/30
+  Courses with grade distribution: 30/30
+
+GPA Statistics (across all courses):
+  Mean GPA: 3.437
+  Median GPA: 3.459
+  Std Dev: 0.207
+  Min GPA: 2.852 (easiest)
+  Max GPA: 3.830 (hardest)
+
+Hardest Courses (lowest GPA):
+  DATA C140: 2.852
+  DATA C88S: 3.047
+  COMPSCI 70: 3.194
+  COMPSCI 61A: 3.201
+
+Easiest Courses (highest GPA):
+  COMPSCI 180: 3.617
+  DATA 88E: 3.716
+  COMPSCI 176: 3.727
+  DATA 6: 3.739
+  DATA 144: 3.830
+
+================================================================================
+DETAILED GRADE DISTRIBUTION ANALYSIS
+================================================================================
+
+Sample Course Breakdowns:
+
+COMPSCI 61A:
+  Total Students: 18178
+  Reported Avg GPA: 3.201
+  Calculated Avg GPA: 3.201
+  Grade Distribution:
+    A+ :   5.5% (1006 students)
+    A  :  15.4% (2800 students)
+    A- :  15.2% (2757 students)
+    B+ :  15.1% (2751 students)
+    B  :  15.2% (2758 students)
+    B- :   8.6% (1559 students)
+    C+ :   4.9% ( 888 students)
+    C  :   1.8% ( 327 students)
+    C- :   0.7% ( 131 students)
+    D+ :   0.3% (  58 students)
+    D  :   0.3% (  61 students)
+    D- :   0.2% (  35 students)
+    F  :   2.8% ( 511 students)
+
+COMPSCI 170:
+  Total Students: 7430
+  Reported Avg GPA: 3.347
+  Calculated Avg GPA: 3.347
+  Grade Distribution:
+    A+ :   2.8% ( 210 students)
+    A  :  21.6% (1605 students)
+    A- :  17.8% (1326 students)
+    B+ :  12.5% ( 931 students)
+    B  :   9.8% ( 728 students)
+    B- :   7.7% ( 574 students)
+    C+ :   2.3% ( 171 students)
+    C  :   2.4% ( 179 students)
+    C- :   2.2% ( 163 students)
+    D+ :   0.0% (   0 students)
+    D  :   0.0% (   1 students)
+    D- :   0.0% (   0 students)
+    F  :   1.2% (  88 students)
+
+DATA C100:
+  Total Students: 11970
+  Reported Avg GPA: 3.358
+  Calculated Avg GPA: 3.358
+  Grade Distribution:
+    A+ :   6.0% ( 719 students)
+    A  :  25.5% (3052 students)
+    A- :  16.9% (2021 students)
+    B+ :  14.6% (1753 students)
+    B  :  10.0% (1202 students)
+    B- :   9.2% (1105 students)
+    C+ :   3.6% ( 429 students)
+    C  :   1.9% ( 233 students)
+    C- :   1.0% ( 124 students)
+    D+ :   0.2% (  24 students)
+    D  :   0.4% (  46 students)
+    D- :   0.3% (  38 students)
+    F  :   1.5% ( 184 students)
+
+Distribution Characteristics:
+
+  Avg students per course: 5174
+  Median students per course: 2614
+  Range: 61 - 18178
+
+  Avg % receiving A-range grades: 51.6%
+  Range: 29.7% - 85.0%
+
+================================================================================
+DATA QUALITY CHECKS
+================================================================================
+
+Found 1 potential issues:
+  - DATA C131A: Missing average GPA
+
+================================================================================
+
+Data exploration complete!
+Data location: data/raw/berkeleytime
+Output saved to: data/exploration_output.txt

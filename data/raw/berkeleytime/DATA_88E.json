@@ -1,0 +1,82 @@
+{
+  "data": {
+    "course": {
+      "courseId": "161103",
+      "subject": "DATA",
+      "number": "88E",
+      "gradeDistribution": {
+        "average": 3.7163934426229512,
+        "distribution": [
+          {
+            "letter": "A",
+            "count": 328
+          },
+          {
+            "letter": "A-",
+            "count": 82
+          },
+          {
+            "letter": "A+",
+            "count": 31
+          },
+          {
+            "letter": "B",
+            "count": 31
+          },
+          {
+            "letter": "B-",
+            "count": 10
+          },
+          {
+            "letter": "B+",
+            "count": 43
+          },
+          {
+            "letter": "C",
+            "count": 7
+          },
+          {
+            "letter": "C-",
+            "count": 5
+          },
+          {
+            "letter": "C+",
+            "count": 5
+          },
+          {
+            "letter": "D",
+            "count": 5
+          },
+          {
+            "letter": "D-",
+            "count": 0
+          },
+          {
+            "letter": "D+",
+            "count": 0
+          },
+          {
+            "letter": "F",
+            "count": 2
+          },
+          {
+            "letter": "NP",
+            "count": 3
+          },
+          {
+            "letter": "P",
+            "count": 118
+          },
+          {
+            "letter": "S",
+            "count": 2
+          },
+          {
+            "letter": "U",
+            "count": 0
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "data": {
+    "course": {
+      "courseId": "125442",
+      "subject": "DATA",
+      "number": "C88S",
+      "gradeDistribution": {
+        "average": 3.047218788627935,
+        "distribution": [
+          {
+            "letter": "A",
+            "count": 213
+          },
+          {
+            "letter": "A-",
+            "count": 50
+          },
+          {
+            "letter": "A+",
+            "count": 54
+          },
+          {
+            "letter": "B",
+            "count": 102
+          },
+          {
+            "letter": "B-",
+            "count": 58
+          },
+          {
+            "letter": "B+",
+            "count": 106
+          },
+          {
+            "letter": "C",
+            "count": 57
+          },
+          {
+            "letter": "C-",
+            "count": 48
+          },
+          {
+            "letter": "C+",
+            "count": 84
+          },
+          {
+            "letter": "D",
+            "count": 11
+          },
+          {
+            "letter": "D-",
+            "count": 0
+          },
+          {
+            "letter": "D+",
+            "count": 0
+          },
+          {
+            "letter": "F",
+            "count": 26
+          },
+          {
+            "letter": "NP",
+            "count": 13
+          },
+          {
+            "letter": "P",
+            "count": 55
+          },
+          {
+            "letter": "S",
+            "count": 0
+          },
+          {
+            "letter": "U",
+            "count": 0
+          }
+        ]
+      }
+    }
+  }
+}

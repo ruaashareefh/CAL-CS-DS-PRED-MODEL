@@ -1,0 +1,82 @@
+{
+  "data": {
+    "course": {
+      "courseId": "124567",
+      "subject": "DATA",
+      "number": "C8",
+      "gradeDistribution": {
+        "average": 3.288860646883141,
+        "distribution": [
+          {
+            "letter": "A",
+            "count": 4287
+          },
+          {
+            "letter": "A-",
+            "count": 2756
+          },
+          {
+            "letter": "A+",
+            "count": 1075
+          },
+          {
+            "letter": "B",
+            "count": 2005
+          },
+          {
+            "letter": "B-",
+            "count": 1047
+          },
+          {
+            "letter": "B+",
+            "count": 2066
+          },
+          {
+            "letter": "C",
+            "count": 849
+          },
+          {
+            "letter": "C-",
+            "count": 601
+          },
+          {
+            "letter": "C+",
+            "count": 683
+          },
+          {
+            "letter": "D",
+            "count": 118
+          },
+          {
+            "letter": "D-",
+            "count": 8
+          },
+          {
+            "letter": "D+",
+            "count": 29
+          },
+          {
+            "letter": "F",
+            "count": 213
+          },
+          {
+            "letter": "NP",
+            "count": 178
+          },
+          {
+            "letter": "P",
+            "count": 1852
+          },
+          {
+            "letter": "S",
+            "count": 10
+          },
+          {
+            "letter": "U",
+            "count": 2
+          }
+        ]
+      }
+    }
+  }
+}

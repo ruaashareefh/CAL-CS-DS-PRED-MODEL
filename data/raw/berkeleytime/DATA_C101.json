@@ -1,0 +1,82 @@
+{
+  "data": {
+    "course": {
+      "courseId": "161885",
+      "subject": "DATA",
+      "number": "C101",
+      "gradeDistribution": {
+        "average": 3.464715447154471,
+        "distribution": [
+          {
+            "letter": "A",
+            "count": 120
+          },
+          {
+            "letter": "A-",
+            "count": 172
+          },
+          {
+            "letter": "A+",
+            "count": 24
+          },
+          {
+            "letter": "B",
+            "count": 69
+          },
+          {
+            "letter": "B-",
+            "count": 38
+          },
+          {
+            "letter": "B+",
+            "count": 173
+          },
+          {
+            "letter": "C",
+            "count": 2
+          },
+          {
+            "letter": "C-",
+            "count": 1
+          },
+          {
+            "letter": "C+",
+            "count": 14
+          },
+          {
+            "letter": "D",
+            "count": 0
+          },
+          {
+            "letter": "D-",
+            "count": 0
+          },
+          {
+            "letter": "D+",
+            "count": 0
+          },
+          {
+            "letter": "F",
+            "count": 2
+          },
+          {
+            "letter": "NP",
+            "count": 2
+          },
+          {
+            "letter": "P",
+            "count": 13
+          },
+          {
+            "letter": "S",
+            "count": 0
+          },
+          {
+            "letter": "U",
+            "count": 0
+          }
+        ]
+      }
+    }
+  }
+}

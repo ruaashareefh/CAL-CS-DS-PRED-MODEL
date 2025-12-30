@@ -1,0 +1,82 @@
+{
+  "data": {
+    "course": {
+      "courseId": "122018",
+      "subject": "DATA",
+      "number": "C131A",
+      "gradeDistribution": {
+        "average": null,
+        "distribution": [
+          {
+            "letter": "A",
+            "count": 0
+          },
+          {
+            "letter": "A-",
+            "count": 0
+          },
+          {
+            "letter": "A+",
+            "count": 0
+          },
+          {
+            "letter": "B",
+            "count": 0
+          },
+          {
+            "letter": "B-",
+            "count": 0
+          },
+          {
+            "letter": "B+",
+            "count": 0
+          },
+          {
+            "letter": "C",
+            "count": 0
+          },
+          {
+            "letter": "C-",
+            "count": 0
+          },
+          {
+            "letter": "C+",
+            "count": 0
+          },
+          {
+            "letter": "D",
+            "count": 0
+          },
+          {
+            "letter": "D-",
+            "count": 0
+          },
+          {
+            "letter": "D+",
+            "count": 0
+          },
+          {
+            "letter": "F",
+            "count": 0
+          },
+          {
+            "letter": "NP",
+            "count": 0
+          },
+          {
+            "letter": "P",
+            "count": 0
+          },
+          {
+            "letter": "S",
+            "count": 0
+          },
+          {
+            "letter": "U",
+            "count": 0
+          }
+        ]
+      }
+    }
+  }
+}
