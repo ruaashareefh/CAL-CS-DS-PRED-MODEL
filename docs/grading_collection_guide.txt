@@ -1,0 +1,94 @@
+GRADING STRUCTURE DATA COLLECTION GUIDE
+================================================================================
+
+PURPOSE
+-------
+Collect grading breakdown information for UC Berkeley CS/DATA courses to use
+as features for predicting course difficulty and grade distributions.
+
+FILES
+-----
+- data/course_websites.csv: List of course websites
+- data/grading_structure.csv: Template for recording grading data
+
+WHAT TO COLLECT
+---------------
+For each course, find the following from the course syllabus/website:
+
+1. PERCENTAGE BREAKDOWN (should sum to ~100%):
+   - pct_exams: % of grade from exams (midterms + finals)
+   - pct_projects: % of grade from projects/programming assignments
+   - pct_homework: % of grade from homework/problem sets
+   - pct_participation: % from participation/attendance/discussion
+   - pct_other: % from quizzes, labs, or other assessments
+
+2. ASSESSMENT COUNTS:
+   - num_exams: Total number of exams (midterms + final)
+   - num_projects: Total number of projects/major assignments
+   - num_homeworks: Total number of homework sets
+
+3. FINAL EXAM:
+   - has_final_exam: yes/no
+
+4. METADATA:
+   - notes: Any special grading policies (e.g., "drops lowest 2 HW")
+   - source_url: Direct link to syllabus/grading policy page
+   - collection_date: Date you collected this (YYYY-MM-DD)
+   - collected: Mark as "yes" when done
+
+HOW TO COLLECT
+--------------
+1. Open data/course_websites.csv to find course website
+2. Visit the course website
+3. Look for: "Syllabus", "Course Info", "Policies", or "Grading"
+4. Record the grading breakdown in data/grading_structure.csv
+5. Mark collected="yes"
+
+TIPS
+----
+- Use most recent semester available (Fall 2024 or Spring 2025)
+- If exact breakdown not available, estimate from course description
+- If multiple semesters differ, use most common structure
+- Some courses may have different structures per semester - note this
+- If you can't find grading info, leave blank and mark collected="attempted"
+
+EXAMPLE: CS 61A
+---------------
+Website: https://cs61a.org/
+Page: https://cs61a.org/articles/about-61a/
+
+Grading breakdown (Fall 2024):
+- Homework: 20%
+- Projects: 25%
+- Midterm 1: 15%
+- Midterm 2: 15%
+- Final: 25%
+
+Record as:
+subject: COMPSCI
+number: 61A
+pct_exams: 55 (15+15+25)
+pct_projects: 25
+pct_homework: 20
+pct_participation: 0
+pct_other: 0
+num_exams: 3 (2 midterms + 1 final)
+num_projects: 4 (typical)
+num_homeworks: ~10-12 (weekly)
+has_final_exam: yes
+notes: "Drops 1 lowest HW"
+source_url: https://cs61a.org/articles/about-61a/
+collection_date: 2025-01-01
+collected: yes
+
+PRIORITY ORDER
+--------------
+Focus on high-enrollment courses first (already sorted by enrollment):
+1. COMPSCI 61A (18,178 students)
+2. DATA C8 (17,779 students)
+3. COMPSCI 61B (13,757 students)
+... etc
+
+Aim to collect at least 10-12 courses for meaningful modeling.
+
+================================================================================

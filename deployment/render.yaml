@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: cal-course-predictor
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: |
+      # Install Node.js for building frontend
+      cd frontend
+      npm ci
+      npm run build
+      cd ..
+
+      # Install Python dependencies
+      pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: LOG_LEVEL
+        value: INFO
+      - key: CORS_ORIGINS
+        sync: false
+        # Set this in Render dashboard to include your production domain
+        # Example: ["https://cal-course-predictor.onrender.com"]
+    healthCheckPath: /api/v1/health
+    autoDeploy: true

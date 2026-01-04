@@ -1,0 +1,178 @@
+COURSE METADATA COLLECTION STRATEGY
+Phase 1.3: Course Metadata Collection
+================================================================================
+
+AVAILABLE DATA SOURCES
+================================================================================
+
+1. BERKLEYTIME API (Primary Source - Automated)
+   Already accessible via GraphQL
+   Provides for ALL 30 courses automatically
+
+   Available Fields:
+   - title: Full course name
+   - description: Detailed course description (VERY USEFUL)
+   - requirements: Prerequisites
+   - finalExam: Whether course has final exam (Y/N)
+   - academicOrganization: Department code
+   - academicOrganizationName: Full department name
+
+   What we can extract from descriptions:
+   - Keywords: "projects", "exams", "homework", "labs"
+   - Workload indicators: "several", "weekly", "significant"
+   - Course type: "theory", "applied", "programming"
+
+   Example (COMPSCI 61A description):
+   "...There are several significant programming projects."
+   → Can extract: project-heavy course
+
+2. UC BERKELEY COURSE CATALOG (Secondary - Web Scraping)
+   URL pattern: https://guide.berkeley.edu/courses/[subject]/
+   - Subject: "compsci" or "data"
+
+   Provides:
+   - Units (credit hours)
+   - Detailed prerequisites
+   - Course descriptions (similar to BerkleyTime)
+   - Grading basis
+
+   Challenges:
+   - Requires web scraping
+   - No public API
+   - May have rate limits
+
+3. COURSE WEBSITES (Manual Collection Recommended)
+   Individual course websites often have:
+   - Grading breakdown (e.g., 40% exams, 30% projects, 30% homework)
+   - Number of exams, projects, homeworks
+   - Detailed syllabus
+
+   Examples:
+   - DATA C100: https://ds100.org/
+   - DATA C8: https://www.data8.org/
+   - CS 61A: https://cs61a.org/
+
+   Challenges:
+   - Only 30 courses → manual collection is feasible
+   - Websites vary in structure
+   - Most updated for current semester
+
+4. RATEMYPROFESSOR (Optional - Low Priority)
+   - Difficulty ratings
+   - "Would take again" percentage
+   - Tags (e.g., "tough grader", "lots of homework")
+
+   Challenges:
+   - Course-level data (not always instructor-specific)
+   - Subjective/biased
+   - Should be treated as weak signal only
+
+================================================================================
+RECOMMENDED COLLECTION STRATEGY
+================================================================================
+
+TIER 1: AUTOMATIC (DO THIS FIRST)
+----------------------------------
+Fetch extended metadata from BerkleyTime API
+   - Update fetch script to pull: title, description, requirements, finalExam
+   - Add fields to database schema
+   - Extract keywords/features from descriptions using NLP
+
+   Estimated time: 30 minutes
+   Coverage: 30/30 courses (100%)
+
+TIER 2: SEMI-AUTOMATED (MEDIUM EFFORT)
+---------------------------------------
+Web scrape UC Berkeley course catalog
+   - Scrape course pages for units, detailed prereqs
+   - Add to database
+
+   Estimated time: 1-2 hours
+   Coverage: 30/30 courses (likely 100%)
+
+TIER 3: MANUAL COLLECTION (HIGH VALUE for 30 courses)
+------------------------------------------------------
+Create CSV template for grading structure
+   - Visit top 10-15 most important courses' websites
+   - Manually record:
+     * % Exams
+     * % Projects
+     * % Homework
+     * Number of each assessment type
+
+   Estimated time: 2-3 hours for 15 courses
+   Coverage: 15/30 courses (50%) - focus on high-enrollment
+
+   Why this is worth it:
+   - Only 30 courses total
+   - Grading structure is CRITICAL for your model
+   - Can't reliably automate this
+   - 15 courses is enough to train initial models
+
+TIER 4: OPTIONAL (Skip for MVP)
+--------------------------------
+- RateMyProfessor scraping
+- Historical syllabi mining
+- Additional contextual signals
+
+================================================================================
+PROPOSED IMPLEMENTATION PLAN
+================================================================================
+
+STEP 1: Extend BerkleyTime fetcher (30 min)
+   - Update GraphQL query
+   - Add database fields
+   - Re-fetch all courses
+
+STEP 2: Feature extraction from descriptions (1 hour)
+   - NLP keyword extraction
+   - Classify course type (theory/applied/systems/etc)
+   - Extract workload indicators
+
+STEP 3: Manual grading structure collection (2-3 hours)
+   - Create CSV template
+   - Visit course websites for top 15 courses by enrollment
+   - Record grading breakdowns
+
+STEP 4 (Optional): Web scraping for units/catalog info (1-2 hours)
+   - Scrape course catalog if needed
+   - Add supplementary metadata
+
+================================================================================
+EXPECTED FEATURES FOR MODELING (Phase 2)
+================================================================================
+
+From BerkleyTime + NLP:
+- has_final_exam (binary)
+- description_mentions_projects (binary)
+- description_mentions_exams (binary)
+- project_intensity (low/medium/high)
+- course_level (lower_div/upper_div)
+- course_type (systems/theory/ml/data/etc)
+
+From Manual Collection:
+- pct_exams (0-100)
+- pct_projects (0-100)
+- pct_homework (0-100)
+- num_exams (count)
+- num_projects (count)
+
+From Existing Data:
+- avg_gpa (already have)
+- total_students (already have)
+- grade_distribution_entropy (can calculate)
+- grade_distribution_skew (can calculate)
+
+================================================================================
+RECOMMENDED NEXT STEP
+================================================================================
+
+Start with TIER 1 (Automatic):
+→ Extend BerkleyTime fetcher to pull title, description, requirements, finalExam
+→ Update database schema
+→ Build feature extraction pipeline
+
+This gives you immediate value with minimal effort.
+Then decide if you want to do manual collection or jump to modeling.
+
+================================================================================

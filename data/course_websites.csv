@@ -1,0 +1,16 @@
+subject,number,enrollment,website,status
+COMPSCI,61A,18178,https://cs61a.org/,found
+DATA,C8,17779,https://data8.org/,found
+COMPSCI,61B,13757,https://datastructur.es/,found
+DATA,C100,11970,https://ds100.org/,found
+COMPSCI,61C,10386,https://cs61c.org/,found
+COMPSCI,70,10256,http://eecs70.org/,found
+COMPSCI,188,9638,https://inst.eecs.berkeley.edu/~cs188/,found
+COMPSCI,170,7430,https://cs170.org/,found
+COMPSCI,161,7383,https://inst.eecs.berkeley.edu/~cs161/,to_check
+DATA,C104,6015,http://data104.org/,found
+COMPSCI,189,5308,https://inst.eecs.berkeley.edu/~cs189/,to_check
+COMPSCI,162,4739,https://inst.eecs.berkeley.edu/~cs162/,to_check
+COMPSCI,186,3672,https://inst.eecs.berkeley.edu/~cs186/,to_check
+DATA,C88C,3464,https://c88c.org/,to_check
+COMPSCI,10,2614,https://inst.eecs.berkeley.edu/~cs10/,to_check

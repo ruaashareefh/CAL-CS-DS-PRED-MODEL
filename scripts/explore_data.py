@@ -1,6 +1,5 @@
 """
 Data Exploration and Validation for BerkleyTime Grade Data
-Step 1.1: Understand what we have and identify any data quality issues
 """
 
 import json

@@ -1,0 +1,16 @@
+subject,number,pct_exams,pct_projects,pct_homework,pct_participation,pct_other,num_exams,num_projects,num_homeworks,has_final_exam,notes,source_url,collection_date,collected
+COMPSCI,61A,53.3,33.3,6.7,6.7,0,3,4,11,yes,"160/300 pts exams (Midterm1:35 Midterm2:50 Final:75); 100pts projects; 20pts HW (drops 1); 10pts lab; 10pts discussion; Exam recovery policy; 300pts total",https://cs61a.org/articles/about-61a/,2025-01-01,yes
+DATA,C8,45,25,20,0,10,2,3,~12,yes,"Midterm 15% + Final 30%; 3 projects; Weekly HW (drops 2 lowest); Weekly labs (drops 2); Labs=10%",https://www.data8.org/fa24/policies/,2025-01-01,yes
+COMPSCI,61B,50,35,9,2,4,3,4,5,yes,"1000pts total: Exams 500pts (MT1:100 MT2:150 Final:250); Projects 350pts (4 projects); HW 90pts (5 assignments); Labs 40pts (8 labs); Surveys 20pts; No curving; No drops",https://fa24.datastructur.es/policies/,2025-01-01,yes
+DATA,C100,50,10,25,10,5,2,~4,12,yes,"Standard track: Midterm 20% + Final 30%; HW 25%; Projects 10%; Labs 5%; Discussion 5%; Lecture participation 5%; Must get 50% on exams to pass",https://ds100.org/sp25/syllabus/,2025-01-01,yes
+COMPSCI,61C,41.7,26.7,12,3.3,16.7,3,3,~10,yes,"300pts total: Exams 125pts (Quest:25 MT:50 Final:75); Projects 80pts (3 projects); HW 36pts; Labs 24pts; Discussion 10pts; No curving",https://cs61c.org/fa25/policies/,2025-01-01,yes
+COMPSCI,70,75,0,15,5,5,2,0,~15,yes,"Final 45% + Midterm 30%; HW 15% (drops 3 lowest); Discussion 5%; Mini-vitamins 5% (top 13 count); Midterm clobber policy",http://www.eecs70.org/policies/,2025-01-01,yes
+COMPSCI,188,55,25,20,0,0,2,5,10,yes,"Final 35% + Midterm 20%; Projects 25% (5 projects); HW 20% (10 assignments drops 1); No curving",https://inst.eecs.berkeley.edu/~cs188/fa24/policies/,2025-01-01,yes
+COMPSCI,170,85,0,10,5,0,3,0,15,yes,"Exams 85% (MT1:25% MT2:25% Final:35%); HW 10% (15 total drops 2); Participation 5%; Class curved; HW scores <80% scaled up",https://cs170.org/policies/,2025-01-01,yes
+COMPSCI,161,,,,,,,,,,,,,no
+DATA,C104,,,,,,,,,,,,,no
+COMPSCI,189,,,,,,,,,,,,,no
+COMPSCI,162,,,,,,,,,,,,,no
+COMPSCI,186,,,,,,,,,,,,,no
+DATA,C88C,,,,,,,,,,,,,no
+COMPSCI,10,,,,,,,,,,,,,no

@@ -1,0 +1,22 @@
+TOP 15 COURSES BY ENROLLMENT - COURSE WEBSITES
+================================================================================
+
+
+Course                 | Students  | Likely Website Pattern
+-----------------------|-----------|----------------------------------------
+1.  COMPSCI 61A        | 18,178    | cs61a.org
+2.  DATA C8            | 17,779    | data8.org
+3.  COMPSCI 61B        | 13,757    | cs61b.org or sp24.datastructur.es
+4.  DATA C100          | 11,970    | ds100.org
+5.  COMPSCI 61C        | 10,386    | cs61c.org
+6.  COMPSCI 70         | 10,256    | eecs70.org
+7.  COMPSCI 188        | 9,638     | cs188.org
+8.  COMPSCI 170        | 7,430     | cs170.org
+9.  COMPSCI 161        | 7,383     | cs161.org
+10. DATA C104          | 6,015     | data104.org
+11. COMPSCI 189        | 5,308     | eecs189.org
+12. COMPSCI 162        | 4,739     | cs162.org
+13. COMPSCI 186        | 3,672     | cs186.org
+14. DATA C88C          | 3,464     | c88c.org
+15. COMPSCI 10         | 2,614     | cs10.org
+

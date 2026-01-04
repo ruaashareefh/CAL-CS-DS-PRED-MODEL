@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+      - CORS_ORIGINS=["http://localhost:8000","http://127.0.0.1:8000"]
+    volumes:
+      # Mount data directory for development (optional)
+      - ../data:/app/data:ro
+      - ../models:/app/models:ro
+      - ../plots:/app/plots:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
