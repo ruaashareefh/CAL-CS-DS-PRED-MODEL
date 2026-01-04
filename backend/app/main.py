@@ -141,26 +141,47 @@ else:
 # In production: Serve React frontend build
 if settings.ENVIRONMENT == "production":
     if settings.FRONTEND_BUILD_DIR.exists():
-        app.mount("/", StaticFiles(directory=str(settings.FRONTEND_BUILD_DIR), html=True), name="frontend")
+        # Mount static assets (JS, CSS, images)
+        app.mount("/assets", StaticFiles(directory=str(settings.FRONTEND_BUILD_DIR / "assets")), name="assets")
+
+        # Catch-all route: serve index.html for all non-API routes (SPA routing)
+        from fastapi.responses import FileResponse
+
+        @app.get("/{full_path:path}")
+        async def serve_spa(full_path: str):
+            """
+            Serve React SPA for all routes that aren't API endpoints.
+            This enables React Router to work on page refresh.
+            """
+            # If path starts with /api, let it fall through to 404
+            if full_path.startswith("api/"):
+                return {"detail": "Not Found"}
+
+            # Serve index.html for all other routes (React Router handles them)
+            index_file = settings.FRONTEND_BUILD_DIR / "index.html"
+            if index_file.exists():
+                return FileResponse(index_file)
+            else:
+                return {"detail": "Frontend not found"}
+
         logger.info(f"Mounted frontend build directory: {settings.FRONTEND_BUILD_DIR}")
     else:
         logger.warning(f"Frontend build directory not found: {settings.FRONTEND_BUILD_DIR}")
+else:
+    # In development: Return API information at root
+    @app.get("/")
+    async def root():
+        """
+        Root endpoint - Development only
 
-
-@app.get("/")
-async def root():
-    """
-    Root endpoint
-
-    In development: Returns API information
-    In production: Serves React frontend (mounted above)
-    """
-    return {
-        "message": "UC Berkeley Course Difficulty Prediction API",
-        "version": settings.VERSION,
-        "docs": "/docs",
-        "api": settings.API_V1_PREFIX
-    }
+        Returns API information for testing
+        """
+        return {
+            "message": "UC Berkeley Course Difficulty Prediction API",
+            "version": settings.VERSION,
+            "docs": "/docs",
+            "api": settings.API_V1_PREFIX
+        }
 
 
 if __name__ == "__main__":
