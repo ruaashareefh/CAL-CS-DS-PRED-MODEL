@@ -36,6 +36,9 @@ class Settings(BaseSettings):
     VERSION: str = "1.0.0"
     DESCRIPTION: str = "Predict course GPA based on grade distributions and grading structure"
 
+    # Groq API for LLM analysis (optional)
+    GROQ_API_KEY: str = ""  # Set via environment variable
+
     class Config:
         env_file = ".env"
         case_sensitive = True

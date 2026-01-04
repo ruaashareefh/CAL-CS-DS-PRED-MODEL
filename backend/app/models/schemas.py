@@ -59,6 +59,11 @@ class UserContext(BaseModel):
         le=5,
         description="Self-reported comfort level with course material (1=low, 5=high)"
     )
+    notes: Optional[str] = Field(
+        None,
+        max_length=1000,
+        description="Free-form notes about circumstances, challenges, or context (processed by LLM)"
+    )
 
 
 class PredictRequest(BaseModel):

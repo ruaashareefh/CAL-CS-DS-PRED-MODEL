@@ -16,6 +16,7 @@ const HomePage = () => {
     hours_per_week_available: '',
     comfort_level: 3,
     prior_courses: [{ course_name: '', grade_received: '' }],
+    notes: '',
   });
 
   // Prediction mutation
@@ -58,6 +59,7 @@ const HomePage = () => {
         hours_per_week_available: userContext.hours_per_week_available ? parseInt(userContext.hours_per_week_available) : null,
         comfort_level: parseInt(userContext.comfort_level),
         prior_courses: validPriorCourses.length > 0 ? validPriorCourses : null,
+        notes: userContext.notes.trim() || null,
       };
 
       // Remove null values
@@ -288,6 +290,45 @@ const HomePage = () => {
                 >
                   + Add Another Course
                 </button>
+              </div>
+
+              <div className="form-group" style={{ marginTop: '1.5rem' }}>
+                <label htmlFor="notes">Additional Notes (Optional)</label>
+                <div style={{ fontSize: '0.85rem', color: '#666', marginBottom: '0.5rem' }}>
+                  Describe any circumstances affecting your performance (health, work, motivation, etc.)
+                </div>
+                <textarea
+                  id="notes"
+                  rows="4"
+                  placeholder="e.g., Working 20 hours/week, strong interest in the subject, previous experience with similar concepts..."
+                  value={userContext.notes}
+                  onChange={(e) => setUserContext({ ...userContext, notes: e.target.value })}
+                  maxLength="1000"
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    border: '1px solid #ccc',
+                    borderRadius: '4px',
+                    fontFamily: 'inherit',
+                    fontSize: '1rem',
+                    resize: 'vertical'
+                  }}
+                />
+                <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem' }}>
+                  {userContext.notes.length}/1000 characters
+                </div>
+                <div style={{
+                  marginTop: '0.75rem',
+                  padding: '0.75rem',
+                  backgroundColor: '#fff3cd',
+                  border: '1px solid #ffc107',
+                  borderRadius: '4px',
+                  fontSize: '0.85rem'
+                }}>
+                  <strong>⚠️ Privacy Notice:</strong> Your notes will be sent to Groq's AI service (third-party)
+                  for analysis. While Groq doesn't store data long-term, <strong>avoid including highly sensitive
+                  or identifying information</strong>. This field is completely optional.
+                </div>
               </div>
             </div>
 

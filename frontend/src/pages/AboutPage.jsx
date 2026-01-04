@@ -222,6 +222,76 @@ const AboutPage = () => {
             <strong>Your Prediction:</strong> 3.35 + 0.27 = 3.62 GPA
           </div>
         </div>
+
+        <div style={{ marginTop: '2rem', padding: '1.5rem', backgroundColor: '#fff3cd', borderRadius: '8px', border: '1px solid #ffc107' }}>
+          <h3 style={{ marginTop: 0, color: '#856404' }}>LLM-Powered Contextual Analysis</h3>
+          <p style={{ marginBottom: '1rem', color: '#856404' }}>
+            In addition to quantitative data, our system can analyze free-form notes using Groq's
+            Llama 3.1 8B model - a fast, free, open-source language model.
+          </p>
+
+          <h4 style={{ color: '#856404', fontSize: '1.05rem', marginTop: '1.5rem' }}>How LLM Analysis Works:</h4>
+          <ol style={{ paddingLeft: '1.5rem', lineHeight: '1.8', color: '#856404' }}>
+            <li>
+              <strong>Free-Form Input:</strong> You can optionally provide notes describing circumstances
+              (work commitments, health, motivation, prior experience)
+            </li>
+            <li>
+              <strong>Groq API:</strong> Notes are sent to Groq's cloud API for analysis
+              (300 tokens/sec, completely free, 14K requests/day limit)
+            </li>
+            <li>
+              <strong>Context Extraction:</strong> The LLM identifies factors like:
+              <ul style={{ marginTop: '0.5rem', paddingLeft: '1.5rem' }}>
+                <li>Health impacts or disabilities</li>
+                <li>External commitments (work hours, caregiving)</li>
+                <li>Motivation and interest levels</li>
+                <li>Relevant experience outside coursework</li>
+                <li>Support systems and resource access</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Conservative Adjustment:</strong> LLM provides a small GPA adjustment (-0.2 to +0.2)
+              based on identified factors, applied after Kalman filter
+            </li>
+            <li>
+              <strong>Explainable Output:</strong> LLM returns structured JSON with reasoning
+              for transparency
+            </li>
+          </ol>
+
+          <h4 style={{ color: '#856404', fontSize: '1.05rem', marginTop: '1.5rem' }}>⚠️ Important Privacy Notice:</h4>
+          <ul style={{ paddingLeft: '1.5rem', lineHeight: '1.8', color: '#856404' }}>
+            <li>
+              <strong>Third-Party Processing:</strong> Notes are sent to Groq's servers (not stored locally)
+            </li>
+            <li>
+              <strong>No Long-term Storage:</strong> Groq doesn't store prompts in their free tier
+              (verify their current Terms of Service)
+            </li>
+            <li>
+              <strong>Optional Feature:</strong> Notes field is completely optional - predictions
+              work fine without it
+            </li>
+            <li>
+              <strong>Avoid Sensitive Info:</strong> Don't include highly identifying or sensitive
+              personal information
+            </li>
+            <li>
+              <strong>Graceful Degradation:</strong> If LLM fails or is unavailable, prediction
+              continues without LLM adjustment
+            </li>
+          </ul>
+
+          <h4 style={{ color: '#856404', fontSize: '1.05rem', marginTop: '1.5rem' }}>Why Groq?</h4>
+          <ul style={{ paddingLeft: '1.5rem', lineHeight: '1.8', color: '#856404' }}>
+            <li><strong>Free:</strong> 14,400 requests/day at no cost</li>
+            <li><strong>Fast:</strong> Up to 300 tokens/second (much faster than OpenAI)</li>
+            <li><strong>Open Source:</strong> Uses Meta's Llama 3.1 8B model</li>
+            <li><strong>Quality:</strong> Good at structured extraction tasks</li>
+            <li><strong>Simple:</strong> OpenAI-compatible API</li>
+          </ul>
+        </div>
       </div>
 
       <div className="card">

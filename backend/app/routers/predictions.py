@@ -3,6 +3,10 @@ Prediction endpoints for GPA predictions
 """
 from fastapi import APIRouter, HTTPException
 from typing import List, Union
+import numpy as np
+import logging
+
+logger = logging.getLogger(__name__)
 from ..models.schemas import (
     PredictRequest,
     PredictResponse,
@@ -26,6 +30,7 @@ from ..models.kalman_filter import (
     apply_kalman_filter_to_prior_courses,
     adjust_prediction_with_kalman_filter
 )
+from ..models.llm_analyzer import get_groq_analyzer
 from ..database.connection import get_db
 from ..database.queries import get_course_features, get_course_by_id, get_course_averages
 
@@ -210,7 +215,23 @@ async def predict_personalized(request: PredictRequest) -> PersonalizedPredictRe
                     overall_gpa=user_context_dict.get('avg_gpa')
                 )
 
-            # Adjust prediction using Kalman filter + other context
+            # Analyze notes with LLM if provided
+            llm_adjustment = 0.0
+            llm_analysis = None
+            if user_context_dict.get('notes'):
+                try:
+                    groq_analyzer = get_groq_analyzer()
+                    course_name = course_data['subject'] + ' ' + course_data['number']
+                    llm_analysis = await groq_analyzer.analyze_notes(
+                        notes=user_context_dict['notes'],
+                        course_name=course_name
+                    )
+                    llm_adjustment = llm_analysis.get('confidence_adjustment', 0.0)
+                except Exception as e:
+                    logger.error(f"LLM analysis failed: {str(e)}")
+                    llm_adjustment = 0.0
+
+            # Adjust prediction using Kalman filter + other context + LLM
             adjusted_mean, adjusted_std = adjust_prediction_with_kalman_filter(
                 base_gpa=base_gpa,
                 base_std=base_std,
@@ -218,6 +239,10 @@ async def predict_personalized(request: PredictRequest) -> PersonalizedPredictRe
                 ability_uncertainty=ability_uncertainty,
                 user_context=user_context_dict
             )
+
+            # Apply LLM adjustment (conservative, after other adjustments)
+            adjusted_mean += llm_adjustment
+            adjusted_mean = np.clip(adjusted_mean, 0.0, 4.0)
 
             # Convert to grade distribution
             grade_probs = gpa_to_grade_distribution(adjusted_mean, adjusted_std)
