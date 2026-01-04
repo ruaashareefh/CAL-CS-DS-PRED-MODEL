@@ -21,6 +21,43 @@ import numpy as np
 from typing import List, Tuple, Dict
 
 
+# Letter grade to GPA conversion (UC Berkeley scale)
+LETTER_GRADE_TO_GPA = {
+    'A+': 4.0,
+    'A': 4.0,
+    'A-': 3.7,
+    'B+': 3.3,
+    'B': 3.0,
+    'B-': 2.7,
+    'C+': 2.3,
+    'C': 2.0,
+    'C-': 1.7,
+    'D': 1.0,
+    'F': 0.0
+}
+
+
+def letter_grade_to_gpa(letter_grade: str) -> float:
+    """
+    Convert letter grade to GPA (0.0-4.0 scale).
+
+    Args:
+        letter_grade: Letter grade (A+, A, A-, B+, B, B-, C+, C, C-, D, F)
+
+    Returns:
+        GPA value (0.0-4.0)
+
+    Raises:
+        ValueError: If letter grade is invalid
+    """
+    if letter_grade not in LETTER_GRADE_TO_GPA:
+        raise ValueError(
+            f"Invalid letter grade: {letter_grade}. "
+            f"Valid grades: {list(LETTER_GRADE_TO_GPA.keys())}"
+        )
+    return LETTER_GRADE_TO_GPA[letter_grade]
+
+
 class StudentAbilityKalmanFilter:
     """
     1D Kalman filter for estimating student's ability relative to course averages.
@@ -116,7 +153,7 @@ def apply_kalman_filter_to_prior_courses(
     Apply Kalman filter to sequence of prior course grades.
 
     Args:
-        prior_courses: List of {'course_name': str, 'grade_received': float}
+        prior_courses: List of {'course_name': str, 'grade_received': str (letter grade)}
         course_averages: Dict mapping course names to average GPAs
         overall_gpa: Student's overall GPA (used for initialization)
 
@@ -147,7 +184,14 @@ def apply_kalman_filter_to_prior_courses(
     valid_observations = 0
     for course in prior_courses:
         course_name = course['course_name']
-        grade_received = course['grade_received']
+        grade_received_letter = course['grade_received']
+
+        # Convert letter grade to GPA
+        try:
+            grade_received_gpa = letter_grade_to_gpa(grade_received_letter)
+        except ValueError:
+            # Invalid letter grade, skip this course
+            continue
 
         # Look up course average
         course_avg = course_averages.get(course_name)
@@ -160,7 +204,7 @@ def apply_kalman_filter_to_prior_courses(
         kf.predict()
 
         # Measurement: How much better/worse than course average
-        measurement = grade_received - course_avg
+        measurement = grade_received_gpa - course_avg
 
         # Weight measurement based on how typical the course is
         # (Give less weight to outlier courses with very high/low averages)

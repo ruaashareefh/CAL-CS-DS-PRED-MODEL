@@ -169,6 +169,7 @@ const AboutPage = () => {
             <li>
               <strong>Sequential Processing:</strong> For each prior course you took:
               <ul style={{ marginTop: '0.5rem', paddingLeft: '1.5rem' }}>
+                <li>Converts your letter grade (A+, A, A-, B+, etc.) to GPA using Berkeley's standard scale</li>
                 <li>Looks up the course's average GPA from our database</li>
                 <li>Calculates how you performed relative to that average (e.g., +0.3 or -0.2)</li>
                 <li>Updates the belief about your typical performance using Bayesian inference</li>
@@ -213,13 +214,13 @@ const AboutPage = () => {
           <div style={{ padding: '1rem', backgroundColor: 'white', borderRadius: '4px', marginTop: '0.75rem', fontFamily: 'monospace', fontSize: '0.9rem' }}>
             <strong>Prior Courses:</strong>
             <ul style={{ marginTop: '0.5rem', marginBottom: '0.5rem', lineHeight: 1.6 }}>
-              <li>COMPSCI 61A: You got 3.7, average was 3.2 → +0.5 offset</li>
-              <li>DATA C8: You got 3.5, average was 3.3 → +0.2 offset</li>
-              <li>COMPSCI 70: You got 3.3, average was 3.2 → +0.1 offset</li>
+              <li>COMPSCI 61A: You got A- (3.7 GPA), average was 3.2 → +0.5 offset</li>
+              <li>DATA C8: You got B+ (3.3 GPA), average was 3.3 → +0.0 offset</li>
+              <li>COMPSCI 70: You got B+ (3.3 GPA), average was 3.2 → +0.1 offset</li>
             </ul>
-            <strong>Kalman Filter Estimate:</strong> +0.27 ability offset (weighted average with optimal gains)<br/>
+            <strong>Kalman Filter Estimate:</strong> +0.22 ability offset (weighted average with optimal gains)<br/>
             <strong>Target Course (CS 170):</strong> Base difficulty 3.35<br/>
-            <strong>Your Prediction:</strong> 3.35 + 0.27 = 3.62 GPA
+            <strong>Your Prediction:</strong> 3.35 + 0.22 = 3.57 GPA
           </div>
         </div>
 
@@ -369,7 +370,7 @@ const AboutPage = () => {
                 personal circumstances, and many other factors we cannot measure.
               </li>
               <li>
-                <strong>Limited Training Data:</strong> Models are trained on only 36 courses. Predictions may be less
+                <strong>Limited Training Data:</strong> Models are trained on 35 courses (with complete grade distribution data). Predictions may be less
                 accurate for edge cases or courses with unique characteristics.
               </li>
               <li>

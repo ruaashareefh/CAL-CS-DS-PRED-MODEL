@@ -17,12 +17,19 @@ class PriorCourse(BaseModel):
         ...,
         description="Course name (e.g., 'COMPSCI 61A', 'DATA C8')"
     )
-    grade_received: float = Field(
+    grade_received: str = Field(
         ...,
-        ge=0.0,
-        le=4.0,
-        description="GPA grade received in this course (0.0-4.0)"
+        description="Letter grade received (A+, A, A-, B+, B, B-, C+, C, C-, D, F)"
     )
+
+    @field_validator('grade_received')
+    @classmethod
+    def validate_grade(cls, v):
+        """Validate letter grade"""
+        valid_grades = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D', 'F']
+        if v not in valid_grades:
+            raise ValueError(f'grade_received must be one of {valid_grades}')
+        return v
 
 
 class UserContext(BaseModel):

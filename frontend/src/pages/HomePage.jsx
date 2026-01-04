@@ -50,7 +50,7 @@ const HomePage = () => {
         .filter(pc => pc.course_name.trim() && pc.grade_received)
         .map(pc => ({
           course_name: pc.course_name.trim(),
-          grade_received: parseFloat(pc.grade_received)
+          grade_received: pc.grade_received  // Letter grade (A+, A, A-, etc.)
         }));
 
       contextData = {
@@ -129,7 +129,7 @@ const HomePage = () => {
           </select>
           <div style={{ fontSize: '0.85rem', color: '#666', marginTop: '0.5rem' }}>
             {modelType === 'grade_distribution' ? (
-              '✓ Uses entropy, skewness, and grade distribution features (MAE: 0.041)'
+              '✓ Uses entropy, skewness, and grade distribution features (MAE: 0.035)'
             ) : modelType === 'full' ? (
               '✓ Uses grade distribution + grading structure features (MAE: 0.061)'
             ) : (
@@ -233,20 +233,28 @@ const HomePage = () => {
                       />
                     </div>
                     <div style={{ flex: 1 }}>
-                      <input
-                        type="number"
-                        placeholder="Grade (0-4)"
-                        min="0"
-                        max="4"
-                        step="0.01"
+                      <select
                         value={course.grade_received}
                         onChange={(e) => {
                           const newCourses = [...userContext.prior_courses];
                           newCourses[index].grade_received = e.target.value;
                           setUserContext({ ...userContext, prior_courses: newCourses });
                         }}
-                        style={{ width: '100%' }}
-                      />
+                        style={{ width: '100%', padding: '0.5rem', border: '1px solid #ccc', borderRadius: '4px' }}
+                      >
+                        <option value="">Select Grade</option>
+                        <option value="A+">A+ (4.0)</option>
+                        <option value="A">A (4.0)</option>
+                        <option value="A-">A- (3.7)</option>
+                        <option value="B+">B+ (3.3)</option>
+                        <option value="B">B (3.0)</option>
+                        <option value="B-">B- (2.7)</option>
+                        <option value="C+">C+ (2.3)</option>
+                        <option value="C">C (2.0)</option>
+                        <option value="C-">C- (1.7)</option>
+                        <option value="D">D (1.0)</option>
+                        <option value="F">F (0.0)</option>
+                      </select>
                     </div>
                     <button
                       type="button"
