@@ -5,7 +5,7 @@
       "subject": "DATA",
       "number": "C88C",
       "gradeDistribution": {
-        "average": 3.296852146263911,
+        "average": 3.297264631043257,
         "distribution": [
           {
             "letter": "A",
@@ -33,7 +33,7 @@
           },
           {
             "letter": "C",
-            "count": 79
+            "count": 78
           },
           {
             "letter": "C-",

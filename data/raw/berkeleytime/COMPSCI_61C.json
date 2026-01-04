@@ -5,7 +5,7 @@
       "subject": "COMPSCI",
       "number": "61C",
       "gradeDistribution": {
-        "average": 3.3075265358636217,
+        "average": 3.3069338763262244,
         "distribution": [
           {
             "letter": "A",
@@ -13,7 +13,7 @@
           },
           {
             "letter": "A-",
-            "count": 1263
+            "count": 1264
           },
           {
             "letter": "A+",
@@ -21,7 +21,7 @@
           },
           {
             "letter": "B",
-            "count": 1168
+            "count": 1169
           },
           {
             "letter": "B-",
@@ -45,7 +45,7 @@
           },
           {
             "letter": "D",
-            "count": 170
+            "count": 171
           },
           {
             "letter": "D-",
@@ -57,7 +57,7 @@
           },
           {
             "letter": "F",
-            "count": 344
+            "count": 345
           },
           {
             "letter": "NP",

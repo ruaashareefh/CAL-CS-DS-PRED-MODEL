@@ -29,7 +29,7 @@ const CoursesPage = () => {
       <div className="card">
         <h2>Browse Courses</h2>
         <p style={{ marginBottom: '1.5rem', color: '#666' }}>
-          Explore all {data?.total || 30} courses with grade distribution data from UC Berkeley.
+          Explore all {data?.total || 36} courses with grade distribution data from UC Berkeley.
           Click on a course to predict its difficulty.
         </p>
 
@@ -43,6 +43,7 @@ const CoursesPage = () => {
             <option value="">All Subjects</option>
             <option value="COMPSCI">Computer Science (COMPSCI)</option>
             <option value="DATA">Data Science (DATA)</option>
+            <option value="EECS">Electrical Engineering & Computer Science (EECS)</option>
           </select>
         </div>
 

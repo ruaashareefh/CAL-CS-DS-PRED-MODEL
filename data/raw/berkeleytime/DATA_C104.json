@@ -5,7 +5,7 @@
       "subject": "DATA",
       "number": "C104",
       "gradeDistribution": {
-        "average": 3.5261499456718575,
+        "average": 3.5262223831944945,
         "distribution": [
           {
             "letter": "A",
@@ -13,7 +13,7 @@
           },
           {
             "letter": "A-",
-            "count": 1636
+            "count": 1637
           },
           {
             "letter": "A+",
@@ -29,7 +29,7 @@
           },
           {
             "letter": "B+",
-            "count": 940
+            "count": 939
           },
           {
             "letter": "C",

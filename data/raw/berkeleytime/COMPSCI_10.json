@@ -5,11 +5,11 @@
       "subject": "COMPSCI",
       "number": "10",
       "gradeDistribution": {
-        "average": 3.390993636808614,
+        "average": 3.395102840352595,
         "distribution": [
           {
             "letter": "A",
-            "count": 708
+            "count": 709
           },
           {
             "letter": "A-",
@@ -17,11 +17,11 @@
           },
           {
             "letter": "A+",
-            "count": 520
+            "count": 521
           },
           {
             "letter": "B",
-            "count": 148
+            "count": 147
           },
           {
             "letter": "B-",
@@ -57,7 +57,7 @@
           },
           {
             "letter": "F",
-            "count": 134
+            "count": 132
           },
           {
             "letter": "NP",

@@ -5,7 +5,7 @@
       "subject": "DATA",
       "number": "C140",
       "gradeDistribution": {
-        "average": 2.852124526714346,
+        "average": 2.8533249158249157,
         "distribution": [
           {
             "letter": "A",
@@ -57,7 +57,7 @@
           },
           {
             "letter": "F",
-            "count": 96
+            "count": 95
           },
           {
             "letter": "NP",

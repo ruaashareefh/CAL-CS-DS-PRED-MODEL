@@ -5,47 +5,47 @@
       "subject": "DATA",
       "number": "144",
       "gradeDistribution": {
-        "average": 3.829501312335958,
+        "average": 3.7879161528976573,
         "distribution": [
           {
             "letter": "A",
-            "count": 1330
+            "count": 1543
           },
           {
             "letter": "A-",
-            "count": 142
+            "count": 202
           },
           {
             "letter": "A+",
-            "count": 205
+            "count": 325
           },
           {
             "letter": "B",
-            "count": 80
+            "count": 121
           },
           {
             "letter": "B-",
-            "count": 26
+            "count": 48
           },
           {
             "letter": "B+",
-            "count": 76
+            "count": 117
           },
           {
             "letter": "C",
-            "count": 8
+            "count": 14
           },
           {
             "letter": "C-",
-            "count": 10
+            "count": 15
           },
           {
             "letter": "C+",
-            "count": 11
+            "count": 22
           },
           {
             "letter": "D",
-            "count": 4
+            "count": 6
           },
           {
             "letter": "D-",
@@ -53,19 +53,19 @@
           },
           {
             "letter": "D+",
-            "count": 5
+            "count": 6
           },
           {
             "letter": "F",
-            "count": 8
+            "count": 14
           },
           {
             "letter": "NP",
-            "count": 13
+            "count": 17
           },
           {
             "letter": "P",
-            "count": 56
+            "count": 63
           },
           {
             "letter": "S",

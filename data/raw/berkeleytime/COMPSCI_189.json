@@ -5,35 +5,35 @@
       "subject": "COMPSCI",
       "number": "189",
       "gradeDistribution": {
-        "average": 3.458578897338403,
+        "average": 3.457871688197941,
         "distribution": [
           {
             "letter": "A",
-            "count": 1568
+            "count": 1697
           },
           {
             "letter": "A-",
-            "count": 535
+            "count": 613
           },
           {
             "letter": "A+",
-            "count": 578
+            "count": 590
           },
           {
             "letter": "B",
-            "count": 326
+            "count": 362
           },
           {
             "letter": "B-",
-            "count": 275
+            "count": 286
           },
           {
             "letter": "B+",
-            "count": 463
+            "count": 531
           },
           {
             "letter": "C",
-            "count": 104
+            "count": 106
           },
           {
             "letter": "C-",
@@ -41,7 +41,7 @@
           },
           {
             "letter": "C+",
-            "count": 135
+            "count": 143
           },
           {
             "letter": "D",
@@ -53,19 +53,19 @@
           },
           {
             "letter": "D+",
-            "count": 10
+            "count": 11
           },
           {
             "letter": "F",
-            "count": 68
+            "count": 82
           },
           {
             "letter": "NP",
-            "count": 118
+            "count": 122
           },
           {
             "letter": "P",
-            "count": 972
+            "count": 988
           },
           {
             "letter": "S",

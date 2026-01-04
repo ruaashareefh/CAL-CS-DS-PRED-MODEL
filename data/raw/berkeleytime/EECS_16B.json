@@ -1,79 +1,79 @@
 {
   "data": {
     "course": {
-      "courseId": "104276",
-      "subject": "COMPSCI",
-      "number": "162",
+      "courseId": "106328",
+      "subject": "EECS",
+      "number": "16B",
       "gradeDistribution": {
-        "average": 3.4724821570182396,
+        "average": 3.183990198080457,
         "distribution": [
           {
             "letter": "A",
-            "count": 1406
+            "count": 1390
           },
           {
             "letter": "A-",
-            "count": 852
+            "count": 559
           },
           {
             "letter": "A+",
-            "count": 122
+            "count": 356
           },
           {
             "letter": "B",
-            "count": 362
+            "count": 720
           },
           {
             "letter": "B-",
-            "count": 212
+            "count": 444
           },
           {
             "letter": "B+",
-            "count": 479
+            "count": 608
           },
           {
             "letter": "C",
-            "count": 91
+            "count": 164
           },
           {
             "letter": "C-",
-            "count": 72
+            "count": 157
           },
           {
             "letter": "C+",
-            "count": 123
+            "count": 184
           },
           {
             "letter": "D",
-            "count": 18
+            "count": 51
           },
           {
             "letter": "D-",
-            "count": 6
+            "count": 54
           },
           {
             "letter": "D+",
-            "count": 18
+            "count": 52
           },
           {
             "letter": "F",
-            "count": 22
+            "count": 158
           },
           {
             "letter": "NP",
-            "count": 47
+            "count": 124
           },
           {
             "letter": "P",
-            "count": 894
+            "count": 1838
           },
           {
             "letter": "S",
-            "count": 13
+            "count": 0
           },
           {
             "letter": "U",
-            "count": 2
+            "count": 1
           }
         ]
       }

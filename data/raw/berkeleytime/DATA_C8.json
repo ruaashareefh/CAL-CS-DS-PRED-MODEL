@@ -5,7 +5,7 @@
       "subject": "DATA",
       "number": "C8",
       "gradeDistribution": {
-        "average": 3.288860646883141,
+        "average": 3.2890660736975854,
         "distribution": [
           {
             "letter": "A",
@@ -13,7 +13,7 @@
           },
           {
             "letter": "A-",
-            "count": 2756
+            "count": 2759
           },
           {
             "letter": "A+",
@@ -33,7 +33,7 @@
           },
           {
             "letter": "C",
-            "count": 849
+            "count": 850
           },
           {
             "letter": "C-",
@@ -57,15 +57,15 @@
           },
           {
             "letter": "F",
-            "count": 213
+            "count": 212
           },
           {
             "letter": "NP",
-            "count": 178
+            "count": 177
           },
           {
             "letter": "P",
-            "count": 1852
+            "count": 1853
           },
           {
             "letter": "S",

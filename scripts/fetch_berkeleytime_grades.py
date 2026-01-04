@@ -60,6 +60,27 @@ DATA_COURSES = [
     "144"      # Data Mining & Analytics
 ]
 
+EECS_COURSES = [
+    # Lower Division Core
+    "16A",     # Designing Information Devices and Systems I
+    "16B",     # Designing Information Devices and Systems II
+
+    # Upper Division - Systems & Architecture
+    "151",     # Introduction to Digital Design
+    "149",     # Embedded Systems
+
+    # Upper Division - Theory & Math
+    "126",     # Probability and Random Processes
+    "127",     # Optimization Models
+
+    # Upper Division - Signal Processing & Communications
+    "120",     # Signals and Systems
+    "123",     # Digital Signal Processing
+
+    # Upper Division - Security & Networking
+    "122",     # Introduction to Communication Networks
+]
+
 
 QUERY = """
 query GetCourseGrades($subject: String!, $number: CourseNumber!) {
@@ -112,7 +133,8 @@ def save_course_data(subject, number, data):
 def run():
     for subject, courses in {
         "COMPSCI": CS_COURSES,
-        "DATA": DATA_COURSES
+        "DATA": DATA_COURSES,
+        "EECS": EECS_COURSES
     }.items():
         for number in courses:
             print(f"Fetching {subject} {number}...")

@@ -5,75 +5,75 @@
       "subject": "COMPSCI",
       "number": "61B",
       "gradeDistribution": {
-        "average": 3.4138595912986154,
+        "average": 3.4113799562909777,
         "distribution": [
           {
             "letter": "A",
-            "count": 3875
+            "count": 4098
           },
           {
             "letter": "A-",
-            "count": 2020
+            "count": 2129
           },
           {
             "letter": "A+",
-            "count": 1509
+            "count": 1540
           },
           {
             "letter": "B",
-            "count": 1006
+            "count": 1083
           },
           {
             "letter": "B-",
-            "count": 708
+            "count": 750
           },
           {
             "letter": "B+",
-            "count": 1641
+            "count": 1751
           },
           {
             "letter": "C",
-            "count": 313
+            "count": 326
           },
           {
             "letter": "C-",
-            "count": 184
+            "count": 189
           },
           {
             "letter": "C+",
-            "count": 423
+            "count": 469
           },
           {
             "letter": "D",
-            "count": 72
+            "count": 75
           },
           {
             "letter": "D-",
-            "count": 33
+            "count": 36
           },
           {
             "letter": "D+",
-            "count": 53
+            "count": 56
           },
           {
             "letter": "F",
-            "count": 299
+            "count": 310
           },
           {
             "letter": "NP",
-            "count": 313
+            "count": 321
           },
           {
             "letter": "P",
-            "count": 1270
+            "count": 1298
           },
           {
             "letter": "S",
-            "count": 29
+            "count": 31
           },
           {
             "letter": "U",
-            "count": 9
+            "count": 10
           }
         ]
       }

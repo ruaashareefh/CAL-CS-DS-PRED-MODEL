@@ -1,79 +1,79 @@
 {
   "data": {
     "course": {
-      "courseId": "104276",
-      "subject": "COMPSCI",
-      "number": "162",
+      "courseId": "124542",
+      "subject": "EECS",
+      "number": "149",
       "gradeDistribution": {
-        "average": 3.4724821570182396,
+        "average": 3.2949685534591193,
         "distribution": [
           {
             "letter": "A",
-            "count": 1406
+            "count": 62
           },
           {
             "letter": "A-",
-            "count": 852
+            "count": 44
           },
           {
             "letter": "A+",
-            "count": 122
+            "count": 36
           },
           {
             "letter": "B",
-            "count": 362
+            "count": 49
           },
           {
             "letter": "B-",
-            "count": 212
+            "count": 32
           },
           {
             "letter": "B+",
-            "count": 479
+            "count": 57
           },
           {
             "letter": "C",
-            "count": 91
+            "count": 3
           },
           {
             "letter": "C-",
-            "count": 72
+            "count": 8
           },
           {
             "letter": "C+",
-            "count": 123
+            "count": 18
           },
           {
             "letter": "D",
-            "count": 18
+            "count": 4
           },
           {
             "letter": "D-",
-            "count": 6
+            "count": 0
           },
           {
             "letter": "D+",
-            "count": 18
+            "count": 5
           },
           {
             "letter": "F",
-            "count": 22
+            "count": 0
           },
           {
             "letter": "NP",
-            "count": 47
+            "count": 1
           },
           {
             "letter": "P",
-            "count": 894
+            "count": 30
           },
           {
             "letter": "S",
-            "count": 13
+            "count": 1
           },
           {
             "letter": "U",
-            "count": 2
+            "count": 0
           }
         ]
       }

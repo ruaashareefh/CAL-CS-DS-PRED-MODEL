@@ -5,7 +5,7 @@
       "subject": "DATA",
       "number": "C100",
       "gradeDistribution": {
-        "average": 3.3580420860018294,
+        "average": 3.358138896513862,
         "distribution": [
           {
             "letter": "A",
@@ -13,7 +13,7 @@
           },
           {
             "letter": "A-",
-            "count": 2021
+            "count": 2022
           },
           {
             "letter": "A+",
@@ -25,11 +25,11 @@
           },
           {
             "letter": "B-",
-            "count": 1105
+            "count": 1104
           },
           {
             "letter": "B+",
-            "count": 1753
+            "count": 1752
           },
           {
             "letter": "C",

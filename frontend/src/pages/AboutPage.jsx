@@ -369,7 +369,7 @@ const AboutPage = () => {
                 personal circumstances, and many other factors we cannot measure.
               </li>
               <li>
-                <strong>Limited Training Data:</strong> Models are trained on only 30 courses. Predictions may be less
+                <strong>Limited Training Data:</strong> Models are trained on only 36 courses. Predictions may be less
                 accurate for edge cases or courses with unique characteristics.
               </li>
               <li>

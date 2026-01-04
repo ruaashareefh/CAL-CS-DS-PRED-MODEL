@@ -5,43 +5,43 @@
       "subject": "DATA",
       "number": "C102",
       "gradeDistribution": {
-        "average": 3.462317518248175,
+        "average": 3.4422286184210527,
         "distribution": [
           {
             "letter": "A",
-            "count": 788
+            "count": 846
           },
           {
             "letter": "A-",
-            "count": 339
+            "count": 367
           },
           {
             "letter": "A+",
-            "count": 129
+            "count": 132
           },
           {
             "letter": "B",
-            "count": 325
+            "count": 406
           },
           {
             "letter": "B-",
-            "count": 135
+            "count": 153
           },
           {
             "letter": "B+",
-            "count": 323
+            "count": 354
           },
           {
             "letter": "C",
-            "count": 45
+            "count": 51
           },
           {
             "letter": "C-",
-            "count": 55
+            "count": 61
           },
           {
             "letter": "C+",
-            "count": 34
+            "count": 42
           },
           {
             "letter": "D",
@@ -57,7 +57,7 @@
           },
           {
             "letter": "F",
-            "count": 19
+            "count": 20
           },
           {
             "letter": "NP",
@@ -65,7 +65,7 @@
           },
           {
             "letter": "P",
-            "count": 259
+            "count": 260
           },
           {
             "letter": "S",
