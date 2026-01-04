@@ -1,5 +1,20 @@
 import React from 'react';
 
+// Convert GPA to most likely letter grade
+const gpaToLetterGrade = (gpa) => {
+  if (gpa >= 3.85) return 'A+';
+  if (gpa >= 3.7) return 'A';
+  if (gpa >= 3.3) return 'A-';
+  if (gpa >= 3.15) return 'B+';
+  if (gpa >= 2.85) return 'B';
+  if (gpa >= 2.5) return 'B-';
+  if (gpa >= 2.15) return 'C+';
+  if (gpa >= 1.85) return 'C';
+  if (gpa >= 1.5) return 'C-';
+  if (gpa >= 1.0) return 'D';
+  return 'F';
+};
+
 const PredictionCard = ({ prediction }) => {
   if (!prediction) return null;
 
@@ -16,13 +31,42 @@ const PredictionCard = ({ prediction }) => {
   // Calculate position for GPA marker (0-4 scale)
   const markerPosition = (predicted_gpa / 4) * 100;
 
+  // Get letter grade
+  const letterGrade = gpaToLetterGrade(predicted_gpa);
+
   return (
     <div className="card">
-      <h2>Prediction Results for {course.full_name}</h2>
+      <h2>Prediction for {course.full_name}</h2>
+
+      {/* Most Probable Grade - Big and Prominent */}
+      <div style={{
+        textAlign: 'center',
+        padding: '2rem',
+        backgroundColor: '#f0f7ff',
+        borderRadius: '8px',
+        marginBottom: '2rem',
+        border: '3px solid #003262'
+      }}>
+        <div style={{ fontSize: '0.9rem', color: '#666', marginBottom: '0.5rem', fontWeight: 600 }}>
+          MOST PROBABLE GRADE
+        </div>
+        <div style={{
+          fontSize: '4rem',
+          fontWeight: 'bold',
+          color: '#003262',
+          lineHeight: 1,
+          marginBottom: '0.5rem'
+        }}>
+          {letterGrade}
+        </div>
+        <div style={{ fontSize: '1.5rem', color: '#FDB515', fontWeight: 600 }}>
+          GPA: {predicted_gpa.toFixed(2)}
+        </div>
+      </div>
 
       {/* GPA Visualization */}
       <div className="gpa-meter">
-        <h3>Predicted GPA</h3>
+        <h3>GPA Breakdown</h3>
         <div className="gpa-meter-bar">
           <div
             className="gpa-marker"
@@ -98,28 +142,28 @@ const PredictionCard = ({ prediction }) => {
         </div>
       </div>
 
-      {/* Model Info */}
+      {/* Prediction Accuracy Info */}
       <div style={{ marginTop: '2rem', padding: '1rem', backgroundColor: '#f0f7ff', borderRadius: '4px' }}>
-        <h3>Model Information</h3>
+        <h3>Prediction Details</h3>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginTop: '0.75rem' }}>
           <div>
-            <div style={{ fontSize: '0.85rem', color: '#666' }}>Model Type</div>
+            <div style={{ fontSize: '0.85rem', color: '#666' }}>Prediction Type</div>
             <div style={{ fontWeight: 600 }}>{model_info.model_name}</div>
           </div>
           {model_info.mae && (
             <div>
-              <div style={{ fontSize: '0.85rem', color: '#666' }}>Mean Absolute Error</div>
-              <div style={{ fontWeight: 600 }}>{model_info.mae.toFixed(3)}</div>
+              <div style={{ fontSize: '0.85rem', color: '#666' }}>Average Error</div>
+              <div style={{ fontWeight: 600 }}>±{model_info.mae.toFixed(3)} GPA</div>
             </div>
           )}
           {model_info.r2 && (
             <div>
-              <div style={{ fontSize: '0.85rem', color: '#666' }}>R² Score</div>
-              <div style={{ fontWeight: 600 }}>{model_info.r2.toFixed(3)}</div>
+              <div style={{ fontSize: '0.85rem', color: '#666' }}>Accuracy Score</div>
+              <div style={{ fontWeight: 600 }}>{(model_info.r2 * 100).toFixed(1)}%</div>
             </div>
           )}
           <div>
-            <div style={{ fontSize: '0.85rem', color: '#666' }}>Features Used</div>
+            <div style={{ fontSize: '0.85rem', color: '#666' }}>Data Points Analyzed</div>
             <div style={{ fontWeight: 600 }}>{model_info.num_features}</div>
           </div>
         </div>
@@ -148,6 +192,7 @@ const PersonalizedPredictionCard = ({ prediction }) => {
 
   // Convert grade distribution to array for easier rendering
   const grades = [
+    { grade: 'A+', prob: grade_distribution['A+'] || 0 },
     { grade: 'A', prob: grade_distribution['A'] },
     { grade: 'A-', prob: grade_distribution['A-'] },
     { grade: 'B+', prob: grade_distribution['B+'] },
@@ -162,10 +207,40 @@ const PersonalizedPredictionCard = ({ prediction }) => {
 
   // Find highest probability grade
   const maxProb = Math.max(...grades.map(g => g.prob));
+  const mostLikelyGrade = grades.find(g => g.prob === maxProb);
 
   return (
     <div className="card">
-      <h2>Personalized Prediction for {course.full_name}</h2>
+      <h2>Your Personalized Prediction for {course.full_name}</h2>
+
+      {/* Most Likely Grade - Big and Prominent */}
+      <div style={{
+        textAlign: 'center',
+        padding: '2rem',
+        backgroundColor: '#f0f7ff',
+        borderRadius: '8px',
+        marginBottom: '2rem',
+        border: '3px solid #003262'
+      }}>
+        <div style={{ fontSize: '0.9rem', color: '#666', marginBottom: '0.5rem', fontWeight: 600 }}>
+          MOST LIKELY GRADE FOR YOU
+        </div>
+        <div style={{
+          fontSize: '4rem',
+          fontWeight: 'bold',
+          color: '#003262',
+          lineHeight: 1,
+          marginBottom: '0.5rem'
+        }}>
+          {mostLikelyGrade.grade}
+        </div>
+        <div style={{ fontSize: '1.5rem', color: '#FDB515', fontWeight: 600 }}>
+          {(mostLikelyGrade.prob * 100).toFixed(1)}% probability
+        </div>
+        <div style={{ fontSize: '1.1rem', color: '#666', marginTop: '0.5rem' }}>
+          Expected GPA: {predicted_gpa_mean.toFixed(2)} ± {predicted_gpa_std.toFixed(2)}
+        </div>
+      </div>
 
       {/* Privacy Notice */}
       <div style={{
