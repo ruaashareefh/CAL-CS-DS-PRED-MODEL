@@ -3,8 +3,10 @@
  */
 import axios from 'axios';
 
-// Use environment variable or default to local development
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+// Use environment variable or default to relative path (works in both dev and production)
+// In development: Vite proxy forwards /api/v1 to http://localhost:8000/api/v1
+// In production: Backend serves frontend and handles /api/v1 directly
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api/v1';
 
 // Create axios instance with default config
 export const api = axios.create({
