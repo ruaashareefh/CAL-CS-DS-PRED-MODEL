@@ -1,17 +1,17 @@
 import React from 'react';
 
-// Convert GPA to most likely letter grade
+// Convert GPA to most likely letter grade using midpoint thresholds
+// Berkeley scale: A+=4.0, A=4.0, A-=3.7, B+=3.3, B=3.0, B-=2.7, C+=2.3, C=2.0, C-=1.7, D=1.0, F=0.0
 const gpaToLetterGrade = (gpa) => {
-  if (gpa >= 3.85) return 'A+';
-  if (gpa >= 3.7) return 'A';
-  if (gpa >= 3.3) return 'A-';
-  if (gpa >= 3.15) return 'B+';
-  if (gpa >= 2.85) return 'B';
-  if (gpa >= 2.5) return 'B-';
-  if (gpa >= 2.15) return 'C+';
-  if (gpa >= 1.85) return 'C';
-  if (gpa >= 1.5) return 'C-';
-  if (gpa >= 1.0) return 'D';
+  if (gpa >= 3.85) return 'A+';  // Midpoint between A (4.0) and A- (3.7)
+  if (gpa >= 3.50) return 'A-';  // Midpoint between A- (3.7) and B+ (3.3)
+  if (gpa >= 3.15) return 'B+';  // Midpoint between B+ (3.3) and B (3.0)
+  if (gpa >= 2.85) return 'B';   // Midpoint between B (3.0) and B- (2.7)
+  if (gpa >= 2.50) return 'B-';  // Midpoint between B- (2.7) and C+ (2.3)
+  if (gpa >= 2.15) return 'C+';  // Midpoint between C+ (2.3) and C (2.0)
+  if (gpa >= 1.85) return 'C';   // Midpoint between C (2.0) and C- (1.7)
+  if (gpa >= 1.35) return 'C-';  // Midpoint between C- (1.7) and D (1.0)
+  if (gpa >= 0.50) return 'D';   // Midpoint between D (1.0) and F (0.0)
   return 'F';
 };
 
