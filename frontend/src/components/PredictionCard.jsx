@@ -36,7 +36,7 @@ const PredictionCard = ({ prediction }) => {
 
   return (
     <div className="card">
-      <h2>Prediction for {course.full_name}</h2>
+      <h2>{course.full_name}</h2>
 
       {/* Most Probable Grade - Big and Prominent */}
       <div style={{
@@ -47,132 +47,104 @@ const PredictionCard = ({ prediction }) => {
         marginBottom: '2rem',
         border: '3px solid #003262'
       }}>
-        <div style={{ fontSize: '0.9rem', color: '#666', marginBottom: '0.5rem', fontWeight: 600 }}>
-          MOST PROBABLE GRADE
+        <div style={{ fontSize: '1rem', color: '#666', marginBottom: '0.5rem', fontWeight: 600 }}>
+          YOUR EXPECTED GRADE IN THIS CLASS
         </div>
         <div style={{
-          fontSize: '4rem',
+          fontSize: '4.5rem',
           fontWeight: 'bold',
           color: '#003262',
           lineHeight: 1,
-          marginBottom: '0.5rem'
+          marginBottom: '0.75rem'
         }}>
           {letterGrade}
         </div>
-        <div style={{ fontSize: '1.5rem', color: '#FDB515', fontWeight: 600 }}>
-          GPA: {predicted_gpa.toFixed(2)}
+        <div style={{ fontSize: '1.3rem', color: '#555', fontWeight: 500, marginBottom: '0.5rem' }}>
+          Expected GPA: <span style={{ color: '#FDB515', fontWeight: 700, fontSize: '1.5rem' }}>{predicted_gpa.toFixed(2)}</span>
+        </div>
+        <div style={{ fontSize: '0.95rem', color: '#666', marginTop: '0.75rem', borderTop: '1px solid #ddd', paddingTop: '0.75rem' }}>
+          Class Average: <span style={{ fontWeight: 600, color: '#003262' }}>{actual_gpa?.toFixed(2) || 'N/A'}</span>
         </div>
       </div>
 
-      {/* GPA Visualization */}
-      <div className="gpa-meter">
-        <h3>GPA Breakdown</h3>
-        <div className="gpa-meter-bar">
-          <div
-            className="gpa-marker"
-            style={{ left: `${markerPosition}%` }}
-            title={`Predicted: ${predicted_gpa.toFixed(2)}`}
-          >
-            {predicted_gpa.toFixed(2)}
-          </div>
-        </div>
-        <div className="gpa-labels">
-          <span>0.0</span>
-          <span>1.0</span>
-          <span>2.0</span>
-          <span>3.0</span>
-          <span>4.0</span>
-        </div>
-
-        <div style={{ marginTop: '1rem', padding: '0.75rem', backgroundColor: '#f9f9f9', borderRadius: '4px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1rem' }}>
-            <div>
-              <div style={{ fontSize: '0.85rem', color: '#666' }}>Predicted GPA</div>
-              <div style={{ fontSize: '1.5rem', fontWeight: 600, color: '#003262' }}>
+      {/* Comparison Section */}
+      {actual_gpa !== null && (
+        <div style={{ marginBottom: '2rem', padding: '1.25rem', backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
+          <h3 style={{ marginTop: 0, marginBottom: '1rem', fontSize: '1.1rem' }}>How You Compare</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+            <div style={{ textAlign: 'center', padding: '1rem', backgroundColor: '#e3f2fd', borderRadius: '6px' }}>
+              <div style={{ fontSize: '0.85rem', color: '#666', marginBottom: '0.5rem' }}>Your Expected GPA</div>
+              <div style={{ fontSize: '2rem', fontWeight: 700, color: '#003262' }}>
                 {predicted_gpa.toFixed(2)}
               </div>
             </div>
-
-            {actual_gpa !== null && (
-              <div>
-                <div style={{ fontSize: '0.85rem', color: '#666' }}>Actual GPA</div>
-                <div style={{ fontSize: '1.5rem', fontWeight: 600, color: '#555' }}>
-                  {actual_gpa.toFixed(2)}
-                </div>
+            <div style={{ textAlign: 'center', padding: '1rem', backgroundColor: '#fff3e0', borderRadius: '6px' }}>
+              <div style={{ fontSize: '0.85rem', color: '#666', marginBottom: '0.5rem' }}>Class Average GPA</div>
+              <div style={{ fontSize: '2rem', fontWeight: 700, color: '#FDB515' }}>
+                {actual_gpa.toFixed(2)}
               </div>
-            )}
-
+            </div>
+          </div>
+          <div style={{ marginTop: '1rem', textAlign: 'center', fontSize: '0.9rem', color: '#555' }}>
             {error !== null && (
+              <span>
+                Your prediction is <strong style={{ color: Math.abs(error) < 0.1 ? '#060' : '#666' }}>
+                  {Math.abs(error).toFixed(3)} GPA points
+                </strong> {error > 0 ? 'above' : 'below'} the class average
+              </span>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Confidence Interval */}
+      <div style={{ marginBottom: '2rem', padding: '1rem', backgroundColor: '#e8f5e9', borderRadius: '8px', border: '1px solid #4caf50' }}>
+        <div style={{ fontSize: '0.9rem', color: '#2e7d32', marginBottom: '0.5rem', fontWeight: 600 }}>
+          ✓ Prediction Confidence
+        </div>
+        <div style={{ fontSize: '0.95rem', color: '#555' }}>
+          We're 95% confident your GPA in this class will be between{' '}
+          <strong style={{ color: '#2e7d32' }}>{confidence_interval.lower.toFixed(2)}</strong> and{' '}
+          <strong style={{ color: '#2e7d32' }}>{confidence_interval.upper.toFixed(2)}</strong>
+        </div>
+      </div>
+
+      {/* Technical Details - Collapsible */}
+      <details style={{ marginTop: '2rem', padding: '1rem', backgroundColor: '#f5f5f5', borderRadius: '8px', cursor: 'pointer' }}>
+        <summary style={{ fontWeight: 600, color: '#003262', fontSize: '1rem', cursor: 'pointer' }}>
+          📊 Show Technical Details
+        </summary>
+
+        <div style={{ marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid #ddd' }}>
+          <h4 style={{ marginTop: 0, fontSize: '0.95rem', color: '#555' }}>Prediction Method: {model_info.model_name}</h4>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1rem', marginTop: '0.75rem', marginBottom: '1.5rem' }}>
+            {model_info.mae && (
               <div>
-                <div style={{ fontSize: '0.85rem', color: '#666' }}>Prediction Error</div>
-                <div
-                  style={{
-                    fontSize: '1.5rem',
-                    fontWeight: 600,
-                    color: Math.abs(error) < 0.1 ? '#060' : '#c00',
-                  }}
-                >
-                  {error > 0 ? '+' : ''}{error.toFixed(3)}
-                </div>
+                <div style={{ fontSize: '0.8rem', color: '#666' }}>Average Error</div>
+                <div style={{ fontWeight: 600, fontSize: '0.95rem' }}>±{model_info.mae.toFixed(3)} GPA</div>
               </div>
             )}
-
-            <div>
-              <div style={{ fontSize: '0.85rem', color: '#666' }}>95% Confidence Interval</div>
-              <div style={{ fontSize: '1.1rem', fontWeight: 600, color: '#555' }}>
-                [{confidence_interval.lower.toFixed(2)}, {confidence_interval.upper.toFixed(2)}]
+            {model_info.r2 && (
+              <div>
+                <div style={{ fontSize: '0.8rem', color: '#666' }}>Accuracy</div>
+                <div style={{ fontWeight: 600, fontSize: '0.95rem' }}>{(model_info.r2 * 100).toFixed(1)}%</div>
               </div>
-            </div>
+            )}
           </div>
-        </div>
-      </div>
 
-      {/* Input Features */}
-      <div style={{ marginTop: '2rem' }}>
-        <h3>Input Features Used</h3>
-        <div className="feature-grid">
-          {Object.entries(input_features).map(([key, value]) => (
-            <div key={key} className="feature-item">
-              <div className="feature-label">{formatFeatureName(key)}</div>
-              <div className="feature-value">
-                {typeof value === 'number' ? value.toFixed(3) : value}
+          <h4 style={{ marginTop: '1rem', fontSize: '0.95rem', color: '#555' }}>Data Used for Prediction</h4>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '0.75rem', marginTop: '0.5rem' }}>
+            {Object.entries(input_features).map(([key, value]) => (
+              <div key={key} style={{ fontSize: '0.85rem', color: '#666', padding: '0.5rem', backgroundColor: 'white', borderRadius: '4px' }}>
+                <div style={{ fontWeight: 500 }}>{formatFeatureName(key)}</div>
+                <div style={{ color: '#003262', fontWeight: 600 }}>
+                  {typeof value === 'number' ? value.toFixed(3) : value}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Prediction Accuracy Info */}
-      <div style={{ marginTop: '2rem', padding: '1rem', backgroundColor: '#f0f7ff', borderRadius: '4px' }}>
-        <h3>Prediction Details</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginTop: '0.75rem' }}>
-          <div>
-            <div style={{ fontSize: '0.85rem', color: '#666' }}>Prediction Type</div>
-            <div style={{ fontWeight: 600 }}>{model_info.model_name}</div>
-          </div>
-          {model_info.mae && (
-            <div>
-              <div style={{ fontSize: '0.85rem', color: '#666' }}>Average Error</div>
-              <div style={{ fontWeight: 600 }}>±{model_info.mae.toFixed(3)} GPA</div>
-            </div>
-          )}
-          {model_info.r2 && (
-            <div>
-              <div style={{ fontSize: '0.85rem', color: '#666' }}>Accuracy Score</div>
-              <div style={{ fontWeight: 600 }}>{(model_info.r2 * 100).toFixed(1)}%</div>
-            </div>
-          )}
-          <div>
-            <div style={{ fontSize: '0.85rem', color: '#666' }}>Data Points Analyzed</div>
-            <div style={{ fontWeight: 600 }}>{model_info.num_features}</div>
+            ))}
           </div>
         </div>
-        {model_info.description && (
-          <div style={{ marginTop: '0.75rem', fontSize: '0.9rem', color: '#555' }}>
-            {model_info.description}
-          </div>
-        )}
-      </div>
+      </details>
     </div>
   );
 };
