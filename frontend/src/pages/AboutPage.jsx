@@ -144,10 +144,84 @@ const AboutPage = () => {
             using Leave-One-Out Cross-Validation
           </li>
           <li>
-            <strong>Prediction:</strong> The trained models predict average GPA based on course features,
+            <strong>Course-Level Prediction:</strong> The trained models predict average GPA based on course features,
             with confidence intervals calculated using the model's MAE
           </li>
+          <li>
+            <strong>Personalized Prediction (Kalman Filter):</strong> For personalized predictions, we use a Kalman filter
+            to sequentially process your prior course grades and estimate your academic performance pattern
+          </li>
         </ol>
+
+        <div style={{ marginTop: '2rem', padding: '1.5rem', backgroundColor: '#f0f7ff', borderRadius: '8px' }}>
+          <h3 style={{ marginTop: 0, color: '#003262' }}>Kalman Filter Methodology</h3>
+          <p style={{ marginBottom: '1rem' }}>
+            Personalized predictions use a sophisticated Kalman filter algorithm - a recursive estimation technique
+            originally developed for aerospace applications, now adapted for academic performance prediction.
+          </p>
+
+          <h4 style={{ color: '#003262', fontSize: '1.05rem', marginTop: '1.5rem' }}>How the Kalman Filter Works:</h4>
+          <ol style={{ paddingLeft: '1.5rem', lineHeight: '1.8', color: '#555' }}>
+            <li>
+              <strong>Initialization:</strong> Starts with your overall GPA compared to the typical average (3.3)
+              as an initial estimate of your "ability offset"
+            </li>
+            <li>
+              <strong>Sequential Processing:</strong> For each prior course you took:
+              <ul style={{ marginTop: '0.5rem', paddingLeft: '1.5rem' }}>
+                <li>Looks up the course's average GPA from our database</li>
+                <li>Calculates how you performed relative to that average (e.g., +0.3 or -0.2)</li>
+                <li>Updates the belief about your typical performance using Bayesian inference</li>
+                <li>Balances new evidence with previous estimate using optimal Kalman gain</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Uncertainty Quantification:</strong> The filter tracks both your estimated ability
+              and the uncertainty in that estimate, which decreases as more courses are processed
+            </li>
+            <li>
+              <strong>Final Adjustment:</strong> The final ability estimate is applied to the target course's
+              base difficulty to produce your personalized prediction
+            </li>
+          </ol>
+
+          <h4 style={{ color: '#003262', fontSize: '1.05rem', marginTop: '1.5rem' }}>Why Kalman Filter?</h4>
+          <ul style={{ paddingLeft: '1.5rem', lineHeight: '1.8', color: '#555' }}>
+            <li>
+              <strong>Optimal Estimation:</strong> Mathematically proven to be the optimal linear estimator
+              when combining multiple noisy measurements
+            </li>
+            <li>
+              <strong>Sequential Processing:</strong> Processes courses one at a time, naturally handling
+              varying amounts of data
+            </li>
+            <li>
+              <strong>Uncertainty Management:</strong> Explicitly models and reduces uncertainty as more
+              evidence accumulates
+            </li>
+            <li>
+              <strong>Robust to Noise:</strong> Accounts for grade variance (different professors,
+              course-specific factors) through measurement noise parameters
+            </li>
+            <li>
+              <strong>Interpretable:</strong> Each step has clear meaning: "Given this new grade observation,
+              how should I update my belief about the student's ability?"
+            </li>
+          </ul>
+
+          <h4 style={{ color: '#003262', fontSize: '1.05rem', marginTop: '1.5rem' }}>Example:</h4>
+          <div style={{ padding: '1rem', backgroundColor: 'white', borderRadius: '4px', marginTop: '0.75rem', fontFamily: 'monospace', fontSize: '0.9rem' }}>
+            <strong>Prior Courses:</strong>
+            <ul style={{ marginTop: '0.5rem', marginBottom: '0.5rem', lineHeight: 1.6 }}>
+              <li>COMPSCI 61A: You got 3.7, average was 3.2 → +0.5 offset</li>
+              <li>DATA C8: You got 3.5, average was 3.3 → +0.2 offset</li>
+              <li>COMPSCI 70: You got 3.3, average was 3.2 → +0.1 offset</li>
+            </ul>
+            <strong>Kalman Filter Estimate:</strong> +0.27 ability offset (weighted average with optimal gains)<br/>
+            <strong>Target Course (CS 170):</strong> Base difficulty 3.35<br/>
+            <strong>Your Prediction:</strong> 3.35 + 0.27 = 3.62 GPA
+          </div>
+        </div>
       </div>
 
       <div className="card">

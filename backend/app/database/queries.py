@@ -248,3 +248,46 @@ def get_course_by_name(
         return None
 
     return get_course_by_id(conn, row['course_id'])
+
+
+def get_course_averages(
+    conn: sqlite3.Connection,
+    course_names: List[str]
+) -> Dict[str, float]:
+    """
+    Get average GPAs for multiple courses by name.
+
+    Args:
+        conn: Database connection
+        course_names: List of course names (e.g., ['COMPSCI 61A', 'DATA C8'])
+
+    Returns:
+        dict: Mapping of course_name -> avg_gpa
+              Only includes courses found in database
+    """
+    result = {}
+
+    for course_name in course_names:
+        # Parse course name (e.g., "COMPSCI 61A" -> subject="COMPSCI", number="61A")
+        parts = course_name.strip().split()
+        if len(parts) < 2:
+            continue  # Invalid format, skip
+
+        subject = parts[0]
+        number = ' '.join(parts[1:])  # Handle numbers like "C8" or "169A"
+
+        # Query for this course
+        query = """
+        SELECT avg_gpa
+        FROM courses
+        WHERE subject = ? AND number = ?
+        """
+
+        cursor = conn.cursor()
+        cursor.execute(query, (subject, number))
+        row = cursor.fetchone()
+
+        if row and row['avg_gpa'] is not None:
+            result[course_name] = row['avg_gpa']
+
+    return result

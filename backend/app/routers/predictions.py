@@ -20,11 +20,14 @@ from ..models.schemas import (
 )
 from ..models.ml_models import model_cache
 from ..models.grade_distribution import (
-    gpa_to_grade_distribution,
-    adjust_prediction_with_context
+    gpa_to_grade_distribution
+)
+from ..models.kalman_filter import (
+    apply_kalman_filter_to_prior_courses,
+    adjust_prediction_with_kalman_filter
 )
 from ..database.connection import get_db
-from ..database.queries import get_course_features, get_course_by_id
+from ..database.queries import get_course_features, get_course_by_id, get_course_averages
 
 router = APIRouter()
 
@@ -178,13 +181,41 @@ async def predict_personalized(request: PredictRequest) -> PersonalizedPredictRe
             # Get base uncertainty from model
             base_std = metadata['model_info'].get('mae', 0.1) * 1.5  # Conservative estimate
 
-            # Adjust prediction with user context
-            # PRIVACY: Only coarse-grained features, no raw personal data
+            # Prepare user context
             user_context_dict = request.user_context.model_dump() if request.user_context else {}
 
-            adjusted_mean, adjusted_std = adjust_prediction_with_context(
+            # Apply Kalman filter if prior courses with grades provided
+            ability_offset = 0.0
+            ability_uncertainty = 0.4
+            kalman_history = []
+
+            if request.user_context and request.user_context.prior_courses:
+                # Extract course names for lookup
+                prior_courses_list = [
+                    {
+                        'course_name': pc.course_name,
+                        'grade_received': pc.grade_received
+                    }
+                    for pc in request.user_context.prior_courses
+                ]
+                course_names = [pc['course_name'] for pc in prior_courses_list]
+
+                # Look up course averages
+                course_averages = get_course_averages(conn, course_names)
+
+                # Apply Kalman filter
+                ability_offset, ability_uncertainty, kalman_history = apply_kalman_filter_to_prior_courses(
+                    prior_courses=prior_courses_list,
+                    course_averages=course_averages,
+                    overall_gpa=user_context_dict.get('avg_gpa')
+                )
+
+            # Adjust prediction using Kalman filter + other context
+            adjusted_mean, adjusted_std = adjust_prediction_with_kalman_filter(
                 base_gpa=base_gpa,
                 base_std=base_std,
+                ability_offset=ability_offset,
+                ability_uncertainty=ability_uncertainty,
                 user_context=user_context_dict
             )
 

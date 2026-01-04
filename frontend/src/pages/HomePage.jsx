@@ -15,7 +15,7 @@ const HomePage = () => {
     units_this_semester: '',
     hours_per_week_available: '',
     comfort_level: 3,
-    prior_courses: '',
+    prior_courses: [{ course_name: '', grade_received: '' }],
   });
 
   // Prediction mutation
@@ -44,17 +44,25 @@ const HomePage = () => {
     // Prepare user context for personalized predictions
     let contextData = null;
     if (modelType === 'personalized') {
+      // Filter out empty prior courses
+      const validPriorCourses = userContext.prior_courses
+        .filter(pc => pc.course_name.trim() && pc.grade_received)
+        .map(pc => ({
+          course_name: pc.course_name.trim(),
+          grade_received: parseFloat(pc.grade_received)
+        }));
+
       contextData = {
         avg_gpa: userContext.avg_gpa ? parseFloat(userContext.avg_gpa) : null,
         units_this_semester: userContext.units_this_semester ? parseInt(userContext.units_this_semester) : null,
         hours_per_week_available: userContext.hours_per_week_available ? parseInt(userContext.hours_per_week_available) : null,
         comfort_level: parseInt(userContext.comfort_level),
-        prior_courses: userContext.prior_courses ? userContext.prior_courses.split(',').map(s => s.trim()).filter(s => s) : null,
+        prior_courses: validPriorCourses.length > 0 ? validPriorCourses : null,
       };
 
       // Remove null values
       contextData = Object.fromEntries(
-        Object.entries(contextData).filter(([_, v]) => v !== null && (Array.isArray(v) ? v.length > 0 : true))
+        Object.entries(contextData).filter(([_, v]) => v !== null)
       );
 
       // Require at least one field for personalized prediction
@@ -147,7 +155,7 @@ const HomePage = () => {
 
             <div style={{ display: 'grid', gap: '1rem' }}>
               <div className="form-group">
-                <label htmlFor="avg-gpa">Your Average GPA (0.0 - 4.0)</label>
+                <label htmlFor="avg-gpa">Your Overall GPA (0.0 - 4.0)</label>
                 <input
                   type="number"
                   id="avg-gpa"
@@ -202,17 +210,84 @@ const HomePage = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="prior-courses">Prior Related Courses (comma-separated)</label>
-                <input
-                  type="text"
-                  id="prior-courses"
-                  placeholder="e.g., COMPSCI 61A, MATH 54"
-                  value={userContext.prior_courses}
-                  onChange={(e) => setUserContext({ ...userContext, prior_courses: e.target.value })}
-                />
-                <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.25rem' }}>
-                  List courses you've taken that relate to this course
+                <label>Prior Related Courses with Grades</label>
+                <div style={{ fontSize: '0.85rem', color: '#666', marginBottom: '0.75rem' }}>
+                  Enter courses you've taken and your grades. Used by Kalman filter to estimate your performance.
                 </div>
+
+                {userContext.prior_courses.map((course, index) => (
+                  <div key={index} style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem', alignItems: 'flex-start' }}>
+                    <div style={{ flex: 2 }}>
+                      <input
+                        type="text"
+                        placeholder="e.g., COMPSCI 61A"
+                        value={course.course_name}
+                        onChange={(e) => {
+                          const newCourses = [...userContext.prior_courses];
+                          newCourses[index].course_name = e.target.value;
+                          setUserContext({ ...userContext, prior_courses: newCourses });
+                        }}
+                        style={{ width: '100%' }}
+                      />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <input
+                        type="number"
+                        placeholder="Grade (0-4)"
+                        min="0"
+                        max="4"
+                        step="0.01"
+                        value={course.grade_received}
+                        onChange={(e) => {
+                          const newCourses = [...userContext.prior_courses];
+                          newCourses[index].grade_received = e.target.value;
+                          setUserContext({ ...userContext, prior_courses: newCourses });
+                        }}
+                        style={{ width: '100%' }}
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const newCourses = userContext.prior_courses.filter((_, i) => i !== index);
+                        setUserContext({ ...userContext, prior_courses: newCourses.length > 0 ? newCourses : [{ course_name: '', grade_received: '' }] });
+                      }}
+                      style={{
+                        padding: '0.5rem 0.75rem',
+                        backgroundColor: '#dc3545',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                        fontSize: '0.9rem'
+                      }}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setUserContext({
+                      ...userContext,
+                      prior_courses: [...userContext.prior_courses, { course_name: '', grade_received: '' }]
+                    });
+                  }}
+                  style={{
+                    padding: '0.5rem 1rem',
+                    backgroundColor: '#003262',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    fontSize: '0.9rem',
+                    marginTop: '0.5rem'
+                  }}
+                >
+                  + Add Another Course
+                </button>
               </div>
             </div>
 

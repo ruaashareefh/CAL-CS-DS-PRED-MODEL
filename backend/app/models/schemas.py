@@ -9,21 +9,37 @@ from typing import List, Optional, Dict
 # Request Schemas
 # ============================================================================
 
+class PriorCourse(BaseModel):
+    """
+    Prior course with student's grade for performance comparison.
+    """
+    course_name: str = Field(
+        ...,
+        description="Course name (e.g., 'COMPSCI 61A', 'DATA C8')"
+    )
+    grade_received: float = Field(
+        ...,
+        ge=0.0,
+        le=4.0,
+        description="GPA grade received in this course (0.0-4.0)"
+    )
+
+
 class UserContext(BaseModel):
     """
     User academic context for personalized predictions.
     PRIVACY: These fields are NON-SENSITIVE and coarse-grained.
     NO demographics, disability status, or protected attributes.
     """
-    prior_courses: Optional[List[str]] = Field(
+    prior_courses: Optional[List[PriorCourse]] = Field(
         None,
-        description="List of prior course names (e.g., ['COMPSCI 61A', 'MATH 54'])"
+        description="List of prior courses with grades for Kalman filter analysis"
     )
     avg_gpa: Optional[float] = Field(
         None,
         ge=0.0,
         le=4.0,
-        description="Current average GPA (optional, clamped to [0.0, 4.0])"
+        description="Current overall GPA (optional, clamped to [0.0, 4.0])"
     )
     units_this_semester: Optional[int] = Field(
         None,
