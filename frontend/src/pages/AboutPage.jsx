@@ -175,7 +175,7 @@ const AboutPage = () => {
                 <li>Converts your letter grade (A+, A, A-, B+, etc.) to GPA using Berkeley's standard scale</li>
                 <li>Looks up the course's average GPA from our database</li>
                 <li>Calculates how you performed relative to that average (e.g., +0.3 or -0.2)</li>
-                <li>Updates the belief about your typical performance using Bayesian inference</li>
+                <li>Updates the estimate of your typical performance using statistical methods</li>
                 <li>Balances new evidence with previous estimate using optimal Kalman gain</li>
               </ul>
             </li>
@@ -189,27 +189,27 @@ const AboutPage = () => {
             </li>
           </ol>
 
-          <h4 style={{ color: '#003262', fontSize: '1.05rem', marginTop: '1.5rem' }}>Why Kalman Filter?</h4>
+          <h4 style={{ color: '#003262', fontSize: '1.05rem', marginTop: '1.5rem' }}>Why Use This Method?</h4>
           <ul style={{ paddingLeft: '1.5rem', lineHeight: '1.8', color: '#555' }}>
             <li>
-              <strong>Optimal Estimation:</strong> Mathematically proven to be the optimal linear estimator
-              when combining multiple noisy measurements
+              <strong>Proven Accuracy:</strong> Uses a well-established mathematical technique
+              that's been proven to give the best possible estimates
             </li>
             <li>
-              <strong>Sequential Processing:</strong> Processes courses one at a time, naturally handling
-              varying amounts of data
+              <strong>Learns from Each Course:</strong> Processes your grades one course at a time,
+              getting better with more information
             </li>
             <li>
-              <strong>Uncertainty Management:</strong> Explicitly tracks and reduces uncertainty as more
-              evidence accumulates
+              <strong>Handles Uncertainty:</strong> Tracks how confident the prediction is and becomes
+              more certain as more courses are included
             </li>
             <li>
-              <strong>Robust to Noise:</strong> Accounts for grade variance (different professors,
-              course-specific factors) through measurement noise parameters
+              <strong>Accounts for Differences:</strong> Considers that different professors and courses
+              have natural grade variations
             </li>
             <li>
-              <strong>Interpretable:</strong> Each step has clear meaning: "Given this new grade observation,
-              how should I update my belief about the student's ability?"
+              <strong>Easy to Understand:</strong> Each step has clear meaning: "Given this new grade,
+              how should I update my estimate of your ability?"
             </li>
           </ul>
 
@@ -326,19 +326,19 @@ const AboutPage = () => {
       </div>
 
       <div className="card">
-        <h2>Technical Details</h2>
+        <h2>About the Predictions</h2>
         <p style={{ color: '#666', marginBottom: '1rem' }}>
-          This tool is built using statistical analysis and pattern recognition techniques developed
-          at UC Berkeley. The predictions are based on:
+          This tool analyzes historical grade data from UC Berkeley courses to help you understand
+          what grade you might expect. The predictions are based on:
         </p>
         <ul style={{ paddingLeft: '1.5rem', lineHeight: '1.8', color: '#555' }}>
-          <li>Ridge Regression for grade distribution analysis (93% accuracy)</li>
-          <li>Random Forest for courses with detailed assignment weights (available for 8 courses)</li>
-          <li>Kalman filtering for personalized sequential grade estimation</li>
-          <li>Bayesian inference for uncertainty quantification</li>
+          <li>Grade patterns from 35 courses (93% accuracy on average)</li>
+          <li>Assignment weights for 8 courses with detailed breakdown</li>
+          <li>Your past performance in related courses (for personalized predictions)</li>
+          <li>Your personal circumstances and context (if you choose to share)</li>
         </ul>
         <p style={{ color: '#666', marginTop: '1rem' }}>
-          All code and methodology are transparent and based on established statistical principles.
+          All methods are transparent and based on established statistical techniques.
         </p>
       </div>
     </div>
